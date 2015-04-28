@@ -446,8 +446,8 @@ to replace the symbol under cursor"
 
 ;; {{ evil-nerd-commenter
 ;; comment/uncomment lines
-(require 'evil-nerd-commenter)
-(evilnc-default-hotkeys)
+;;(require 'evil-nerd-commenter)
+;;(evilnc-default-hotkeys)
 ;; }}
 
 (provide 'init-evil)

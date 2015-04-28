@@ -46,17 +46,41 @@
       )
 
 ;; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
-(setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
+(setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5) ("finish.org" :level . 2))))
 ;; Targets start with the file name - allows creating level 1 tasks
 (setq org-refile-use-outline-path (quote file))
 ;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
 (setq org-outline-path-complete-in-steps t)
 
-
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
               (sequence "WAITING(w@/!)" "SOMEDAY(S)" "PROJECT(P@)" "|" "CANCELLED(c@/!)"))))
 
+(setq gtd-directory (expand-file-name "~/my_wikis/org-wiki/gtd"))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline (concat gtd-directory "/task.org") "Tasks")
+         "* TODO %?\n %i\n %a")
+        ("j" "Journal" entry (file+headline (concat gtd-directory "/task.org") "Calendar")
+         "* TODO %?\n %i\n %a")
+        ("i" "Ideas" entry (file+headline (concat gtd-directory "/tbd.org") "Ideas")
+         "* %?\n %i\n %a")
+        ("p" "Projects" entry (file+headline (concat gtd-directory "/prj.org") "Projects")
+         "* %?\n %i\n %a")
+        ("n" "Notes" entry (file+headline (concat gtd-directory "/note.org") "Notes")
+         "* %?\n %i\n %a")))
+(setq org-default-notes-file (concat gtd-directory "/tbd.org"))
+(define-key global-map "\C-cr" 'org-capture)
+
+(setq org-agenda-files (list (concat gtd-directory "/task.org")
+                             (concat gtd-directory "/prj.org")
+                             (concat gtd-directory "/tbd.org")))
+(setq org-agenda-custom-commands
+      '(("d" "Daily Action List"
+         ((agenda "" ((org-agenda-ndays 1)
+                      (org-agenda-sorting-strategy (quote ((agenda time-up priority-down tag-up))))
+                      (org-deadline-warning-days 0)
+                      ))))
+        ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org clock
