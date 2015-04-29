@@ -194,3 +194,6 @@
 ;;; no-byte-compile: t
 ;;; End:
 (put 'erase-buffer 'disabled nil)
+
+;; Disable underscore-to-subscript
+(setq org-export-with-sub-superscripts nil)
