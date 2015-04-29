@@ -162,7 +162,7 @@
                              init-doxygen
                              init-pomodoro
                              init-emacspeak
-                             init-artbollocks-mode
+                             ;;init-artbollocks-mode
                              init-emacs-w3m
                              init-semantic))
 (idle-require-mode 1) ;; starts loading
