@@ -197,3 +197,6 @@
 
 ;; Disable underscore-to-subscript
 (setq org-export-with-sub-superscripts nil)
+
+;; org-impress-js
+(require 'ox-impress-js)
